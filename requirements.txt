@@ -1,0 +1,6 @@
+altair
+folium
+geopandas
+pandas
+matplotlib
+urllib3==1.26.6
