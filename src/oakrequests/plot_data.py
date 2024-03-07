@@ -138,7 +138,7 @@ class OakMap:
 def generate_imap(filename):
     """Save example map to `filename`."""
     oak311 = parse_oak.Oak311("data/oak311_20240101to20240306_2024-03-06_115017.json")
-    potholes = oak311.filter_data("Poth")
+    potholes = oak311.filter_data("Poth").query('datetimeinit < "2024-03-01"')
     stations = parse_weather.Station.list_stations()
     districts = parse_oak.load_districts("data/oak_districts.geojson")
     oakcity = parse_oak.get_city_geom(
@@ -147,7 +147,7 @@ def generate_imap(filename):
 
     city_map = OakMap(location=[37.8123, -122.2635])
     city_map.add_stations(stations)
-    city_map.add_events(potholes, "potholes")
+    city_map.add_events(potholes, "Potholes")
     city_map.add_heatmap(potholes, "heatmap")
     city_map.add_districts(districts, "Districts", False)
     city_map.add_city(oakcity, "Oakland")
