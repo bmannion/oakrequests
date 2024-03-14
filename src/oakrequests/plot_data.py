@@ -4,8 +4,8 @@ import folium  # type: ignore
 from folium import plugins
 import matplotlib.colors as mcolors
 
-import parse_oak # pylint: disable=import-error
-import parse_weather # pylint: disable=import-error
+import parse_oak  # type: ignore # pylint: disable=import-error
+import parse_weather  # type: ignore # pylint: disable=import-error
 
 
 class OakMap:
