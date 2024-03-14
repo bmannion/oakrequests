@@ -53,6 +53,7 @@ def get_stations(coords: list[float], start_date: str, end_date: str, token: str
 
 class Station:
     """Weather station"""
+
     def __init__(self, name, station_id):
         self.name = name
         self.station_id = station_id
@@ -61,8 +62,12 @@ class Station:
     def get_station_coords(self):
         """Parse table station-specific coords."""
         df = Station.list_stations()
-        self.latitude = df.loc[df["name"] == self.name, "latitude"].values[0] # pylint: disable=no-member
-        self.longitude = df.loc[df["name"] == self.name, "longitude"].values[0] # pylint: disable=no-member
+        self.latitude = df.loc[df["name"] == self.name, "latitude"].values[  # pylint: disable=no-member
+            0
+        ]
+        self.longitude = df.loc[df["name"] == self.name, "longitude"].values[ # pylint: disable=no-member
+            0
+        ]
 
     @staticmethod
     def list_stations():
@@ -96,9 +101,11 @@ class Station:
 
         merged_df = (
             merged_df.fillna(
-                {"station": self.station_id,
-                 "name": self.name,
-                 "datatype": dattypeid}#, axis=0
+                {
+                    "station": self.station_id,
+                    "name": self.name,
+                    "datatype": dattypeid,
+                }  # , axis=0
             )
             .reset_index(drop=False)
             .rename(columns={"index": "date"})
