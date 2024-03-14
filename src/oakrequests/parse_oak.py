@@ -1,12 +1,13 @@
 """Get and parse city of Oakland 311 data."""
 
 import datetime
-import geopandas as gpd # type: ignore
+import geopandas as gpd  # type: ignore
 import pandas as pd
 
 
 class Oak311:
     """Oakland 311"""
+
     def __init__(self, filename):
         self.load_data(filename)
 
@@ -23,7 +24,7 @@ class Oak311:
 
     def filter_data(self, description_query):
         """Filter table by `description_query`"""
-        filtered_df = self.data.loc[ # pylint: disable=no-member
+        filtered_df = self.data.loc[  # pylint: disable=no-member
             (self.data["description"].str.contains(description_query, case=False))
             & ~(self.data["reqaddress"].isna()),
             [
@@ -32,7 +33,7 @@ class Oak311:
                 "description",
                 "reqcategory",
                 "reqaddress",
-                "status",
+                "status", # pylint: disable=R0801
                 "councildistrict",
                 "beat",
                 "probaddress",
